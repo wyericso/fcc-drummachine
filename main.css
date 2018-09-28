@@ -1,3 +1,63 @@
 body {
     font-family: sans-serif;
 }
+
+#drum-machine {
+    border: 1px solid;
+    display: flex;
+}
+
+#display {
+    border: 1px solid;
+    height: 30px;
+    width: 240px;
+}
+
+#drumpads-container {
+    border: 1px solid;
+    display: grid;
+    grid-template-areas:
+        "Q W E"
+        "A S D"
+        "Z X C";
+}
+
+#Q {
+    grid-area: Q;
+}
+
+#W {
+    grid-area: W;
+}
+
+#E {
+    grid-area: E;
+}
+
+#A {
+    grid-area: A;
+}
+
+#S {
+    grid-area: S;
+}
+
+#D {
+    grid-area: D;
+}
+
+#Z {
+    grid-area: Z;
+}
+
+#X {
+    grid-area: X;
+}
+
+#C {
+    grid-area: C;
+}
+
+#drumpads-container > div {
+    border: 1px solid;
+}

@@ -6,8 +6,8 @@ class DrumMachine extends React.Component {
     }
 
     render() {
-        return (<h1>Drum Machine, yoyo!</h1>);
+        return (<span>#display</span>);
     }
 }
 
-ReactDOM.render(<DrumMachine />, document.getElementById('drum-machine'));
+ReactDOM.render(<DrumMachine />, document.getElementById('display'));

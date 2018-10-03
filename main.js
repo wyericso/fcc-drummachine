@@ -47,4 +47,4 @@ class Drumpads extends React.Component {
     }
 }
 
-ReactDOM.render(<DrumMachine />, document.body);
+ReactDOM.render(<DrumMachine />, document.getElementById("drum-machine-container"));

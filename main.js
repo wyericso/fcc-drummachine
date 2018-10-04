@@ -10,7 +10,9 @@ class DrumMachine extends React.Component {
     }
 
     handleKeyChange(key) {
-        console.log(key.toUpperCase());
+        this.setState({ key }, () => {
+            console.log(this.state.key);
+        });
     }
 
     render() {
@@ -35,7 +37,7 @@ class Drumpads extends React.Component {
         window.setTimeout(() => {
             document.getElementById(event.key.toUpperCase()).style.backgroundColor = 'white';
         }, 100);
-        this.props.onKeyChange(event.key);
+        this.props.onKeyChange(event.key.toUpperCase());
     }
 
     render() {

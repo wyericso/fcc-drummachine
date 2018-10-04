@@ -18,7 +18,7 @@ class DrumMachine extends React.Component {
     render() {
         return (
             <div id="drum-machine">
-                <div id="display"></div>
+                <Display keyPressed={this.state.key} />
                 <Drumpads onKeyChange={this.handleKeyChange} />
             </div>
         );
@@ -53,6 +53,18 @@ class Drumpads extends React.Component {
                 <div className="drumpad" id="X">X</div>
                 <div className="drumpad" id="C">C</div>
             </div>
+        );
+    }
+}
+
+class Display extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <div id="display">{this.props.keyPressed}</div>
         );
     }
 }

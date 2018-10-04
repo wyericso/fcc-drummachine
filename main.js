@@ -3,13 +3,21 @@
 class DrumMachine extends React.Component {
     constructor(props) {
         super(props);
+        this.handleKeyChange = this.handleKeyChange.bind(this);
+        this.state = {
+            key: ""
+        };
+    }
+
+    handleKeyChange(key) {
+        console.log(key.toUpperCase());
     }
 
     render() {
         return (
             <div id="drum-machine">
                 <div id="display"></div>
-                <Drumpads />
+                <Drumpads onKeyChange={this.handleKeyChange} />
             </div>
         );
     }
@@ -18,21 +26,21 @@ class DrumMachine extends React.Component {
 class Drumpads extends React.Component {
     constructor(props) {
         super(props);
-        this.getKey = this.getKey.bind(this);
+        this.handleKeyDown = this.handleKeyDown.bind(this);
     }
 
-    getKey(event) {
+    handleKeyDown(event) {
         event.persist();
-        console.log(event.key.toUpperCase());
         document.getElementById(event.key.toUpperCase()).style.backgroundColor = 'blue';
         window.setTimeout(() => {
             document.getElementById(event.key.toUpperCase()).style.backgroundColor = 'white';
         }, 100);
+        this.props.onKeyChange(event.key);
     }
 
     render() {
         return (
-            <div id="drumpads-container" onKeyDown={this.getKey} tabIndex="0">
+            <div id="drumpads-container" onKeyDown={this.handleKeyDown} tabIndex="0">
                 <div className="drumpad" id="Q">Q</div>
                 <div className="drumpad" id="W">W</div>
                 <div className="drumpad" id="E">E</div>

@@ -1,9 +1,16 @@
 'use strict';
 
-function keyKeeper(state = { key: "" }, action) {
+const CHANGEKEY = "CHANGEKEY";
+
+const changeKey = (keyPressed) => ({
+    type: CHANGEKEY,
+    keyPressed
+});
+
+function keyKeeper(state = { keyPressed: "JKL" }, action) {
     switch (action.type) {
-    case "KEYPRESSED":
-        return { key: action.key};
+    case CHANGEKEY:
+        return { keyPressed: action.keyPressed };
     default:
         return state;
     }
@@ -11,32 +18,35 @@ function keyKeeper(state = { key: "" }, action) {
 
 let store = window.Redux.createStore(keyKeeper);
 
-class DrumMachine extends React.Component {
-    constructor(props) {
-        super(props);
-        this.handleKeyChange = this.handleKeyChange.bind(this);
-        this.state = {
-            key: ""
-        };
-    }
+const { connect, Provider } = ReactRedux;
 
-    handleKeyChange(key) {
-        this.setState({ key }, () => {
-            console.log(this.state.key);
-        });
-    }
+const DrumMachine = () => (
+    <div id="drum-machine">
+        <Display />
+        <Drumpads />
+    </div>
+);
 
-    render() {
-        return (
-            <div id="drum-machine">
-                <Display keyPressed={this.state.key} />
-                <Drumpads onKeyChange={this.handleKeyChange} />
-            </div>
-        );
-    }
-}
+const mapStateToProps = state => {
+    console.log(state);
+    return {
+        keyPressed: state.keyPressed
+    };
+};
 
-class Drumpads extends React.Component {
+const ConnectedDisplay = ({ keyPressed }) => (
+    <div id="display">{ keyPressed }</div>
+);
+
+const Display = connect(mapStateToProps)(ConnectedDisplay);
+
+const mapDispatchToProps = dispatch => {
+    return {
+        changeKey: keyPressed => dispatch(changeKey(keyPressed))
+    }
+};
+
+class ConnectedDrumpads extends React.Component {
     constructor(props) {
         super(props);
         this.handleKeyDown = this.handleKeyDown.bind(this);
@@ -48,12 +58,7 @@ class Drumpads extends React.Component {
         window.setTimeout(() => {
             document.getElementById(event.key.toUpperCase()).style.backgroundColor = 'white';
         }, 100);
-        this.props.onKeyChange(event.key.toUpperCase());
-        store.dispatch({
-            type: "KEYPRESSED",
-            key: event.key.toUpperCase()
-        });
-        console.log(store.getState());
+        this.props.changeKey(event.key.toUpperCase());
     }
 
     render() {
@@ -73,16 +78,10 @@ class Drumpads extends React.Component {
     }
 }
 
-class Display extends React.Component {
-    constructor(props) {
-        super(props);
-    }
+const Drumpads = connect(null, mapDispatchToProps)(ConnectedDrumpads);
 
-    render() {
-        return (
-            <div id="display">{this.props.keyPressed}</div>
-        );
-    }
-}
-
-ReactDOM.render(<DrumMachine />, document.getElementById("drum-machine-container"));
+ReactDOM.render(
+    <Provider store={store}>
+        <DrumMachine />
+    </Provider>, document.getElementById("drum-machine-container")
+);

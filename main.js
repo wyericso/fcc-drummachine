@@ -7,7 +7,7 @@ const changeKey = (keyPressed) => ({
     keyPressed
 });
 
-function keyKeeper(state = { keyPressed: "JKL" }, action) {
+function keyKeeper(state = { keyPressed: "" }, action) {
     switch (action.type) {
     case CHANGEKEY:
         return { keyPressed: action.keyPressed };
@@ -28,7 +28,6 @@ const DrumMachine = () => (
 );
 
 const mapStateToProps = state => {
-    console.log(state);
     return {
         keyPressed: state.keyPressed
     };

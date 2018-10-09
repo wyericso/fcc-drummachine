@@ -1,5 +1,16 @@
 'use strict';
 
+function keyKeeper(state = { key: "" }, action) {
+    switch (action.type) {
+    case "KEYPRESSED":
+        return { key: action.key};
+    default:
+        return state;
+    }
+}
+
+let store = window.Redux.createStore(keyKeeper);
+
 class DrumMachine extends React.Component {
     constructor(props) {
         super(props);
@@ -38,6 +49,11 @@ class Drumpads extends React.Component {
             document.getElementById(event.key.toUpperCase()).style.backgroundColor = 'white';
         }, 100);
         this.props.onKeyChange(event.key.toUpperCase());
+        store.dispatch({
+            type: "KEYPRESSED",
+            key: event.key.toUpperCase()
+        });
+        console.log(store.getState());
     }
 
     render() {

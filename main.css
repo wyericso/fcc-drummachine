@@ -46,43 +46,43 @@ body {
     grid-gap: 10px;
 }
 
-#Q {
+#drum-pad-Q {
     grid-area: Q;
 }
 
-#W {
+#drum-pad-W {
     grid-area: W;
 }
 
-#E {
+#drum-pad-E {
     grid-area: E;
 }
 
-#A {
+#drum-pad-A {
     grid-area: A;
 }
 
-#S {
+#drum-pad-S {
     grid-area: S;
 }
 
-#D {
+#drum-pad-D {
     grid-area: D;
 }
 
-#Z {
+#drum-pad-Z {
     grid-area: Z;
 }
 
-#X {
+#drum-pad-X {
     grid-area: X;
 }
 
-#C {
+#drum-pad-C {
     grid-area: C;
 }
 
-.drumpad {
+.drum-pad {
     border: 1px solid;
     height: 100px;
     width: 100px;

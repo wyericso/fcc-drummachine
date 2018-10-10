@@ -95,11 +95,11 @@ class ConnectedDrumpads extends React.Component {
     }
 
     hitPad(keyPressed) {
-        document.getElementById(keyPressed).style.backgroundColor = "#e3ebe3";
+        document.getElementById("drum-pad-" + keyPressed).style.backgroundColor = "#e3ebe3";
         window.setTimeout(() => {
-            document.getElementById(keyPressed).style.backgroundColor = "white";
+            document.getElementById("drum-pad-" + keyPressed).style.backgroundColor = "white";
         }, 100);
-        const sound = document.getElementById("audio-" + keyPressed);
+        const sound = document.getElementById(keyPressed);
         sound.currentTime = 0;
         sound.play();
         this.props.changeKey(keyPressed);
@@ -118,10 +118,9 @@ class ConnectedDrumpads extends React.Component {
         return (
             <div id="drumpads-container" onKeyDown={this.handleKeyDown} tabIndex="0">
                 {Object.keys(keyMapping).map((key) => 
-                    <div className="drumpad" id={key} key={key} onClick={() => this.handleClick(key)}>
+                    <div className="drum-pad" id={"drum-pad-" + key} key={key} onClick={() => this.handleClick(key)}>
                         {key}
-                        <audio id={"audio-" + key}>
-                            <source src={keyMapping[key].audioUrl} type="audio/mpeg" />
+                        <audio class="clip" id={key} src={keyMapping[key].audioUrl}>
                             Your browser does not support the audio element.
                         </audio>
                     </div>

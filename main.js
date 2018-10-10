@@ -73,7 +73,9 @@ const keyMapping = {
 };
 
 const ConnectedDisplay = ({ keyPressed }) => (
-    <div id="display">{ keyMapping[keyPressed] && keyMapping[keyPressed].display }</div>
+    <div id="display">
+        { keyMapping[keyPressed] && keyMapping[keyPressed].display }
+    </div>
 );
 
 const Display = connect(mapStateToProps)(ConnectedDisplay);

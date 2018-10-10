@@ -2,15 +2,27 @@ body {
     font-family: sans-serif;
 }
 
+#drum-machine-container {
+    width: 640px;
+    margin: auto;
+}
+
 #drum-machine {
     border: 1px solid;
     display: flex;
+    justify-content: space-evenly;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
 }
 
 #display {
     border: 1px solid;
     height: 30px;
     width: 240px;
+    margin: auto;
+    text-align: center;
+    line-height: 30px;
 }
 
 #drumpads-container {
@@ -20,6 +32,7 @@ body {
         "Q W E"
         "A S D"
         "Z X C";
+    grid-gap: 10px;
 }
 
 #Q {
@@ -62,4 +75,5 @@ body {
     border: 1px solid;
     height: 100px;
     width: 100px;
+    border-radius: 5px;
 }

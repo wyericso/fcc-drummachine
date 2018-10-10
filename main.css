@@ -23,6 +23,7 @@ body {
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    flex-wrap: wrap;
 }
 
 #display {
@@ -96,4 +97,16 @@ footer {
     text-align: center;
     font-family: sans-serif;
     margin: 20px;
+}
+
+@media (max-width: 660px) {
+    #drum-machine-container {
+        width: 360px;
+    }
+    #drum-machine {
+        padding: 10px;
+    }
+    #display, #drumpads-container {
+        margin: 10px;
+    }
 }

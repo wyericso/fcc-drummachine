@@ -95,9 +95,9 @@ class ConnectedDrumpads extends React.Component {
     }
 
     hitPad(keyPressed) {
-        document.getElementById(keyPressed).style.backgroundColor = 'blue';
+        document.getElementById(keyPressed).style.backgroundColor = "#e3ebe3";
         window.setTimeout(() => {
-            document.getElementById(keyPressed).style.backgroundColor = 'white';
+            document.getElementById(keyPressed).style.backgroundColor = "white";
         }, 100);
         const sound = document.getElementById("audio-" + keyPressed);
         sound.currentTime = 0;
